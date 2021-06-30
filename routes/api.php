@@ -26,11 +26,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('user/current', [AuthController::class, 'getCurrentUser'])->name('getCurrentUser');
 
     Route::get('topic', [TopicController::class, 'index'])->name('topic.index');
+    Route::get('topic/{topic}', [TopicController::class, 'show'])->name('topic.show');
     Route::post('topic', [TopicController::class, 'store'])->name('topic.store');
     Route::put('topic/{topic}', [TopicController::class, 'update'])->name('topic.update');
     Route::delete('topic/{topic}', [TopicController::class, 'delete'])->name('topic.delete');
 
     Route::get('questionnaire', [QuestionnaireController::class, 'index'])->name('questionnaire.index');
+    Route::get('questionnaire/{questionnaire}', [QuestionnaireController::class, 'show'])->name('questionnaire.show');
     Route::post('questionnaire', [QuestionnaireController::class, 'store'])->name('questionnaire.store');
     Route::put('questionnaire/{questionnaire}', [QuestionnaireController::class, 'update'])->name('questionnaire.update');
     Route::delete('questionnaire/{questionnaire}', [QuestionnaireController::class, 'delete'])->name('questionnaire.delete');
