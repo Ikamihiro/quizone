@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTopicQuestionnaireTable extends Migration
+class CreateQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class CreateTopicQuestionnaireTable extends Migration
      */
     public function up()
     {
-        Schema::create('topic_questionnaire', function (Blueprint $table) {
-            $table->foreignUuid('topic_id')->constrained('topics')->cascadeOnDelete();
+        Schema::create('questions', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('title');
+            $table->longText('description');
+            $table->boolean('correct')->default(false);
             $table->foreignUuid('questionnaire_id')->constrained('questionnaires')->cascadeOnDelete();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -26,6 +31,6 @@ class CreateTopicQuestionnaireTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('topic_questionnaire');
+        Schema::dropIfExists('questions');
     }
 }
