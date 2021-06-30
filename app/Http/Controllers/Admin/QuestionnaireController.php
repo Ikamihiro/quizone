@@ -12,7 +12,10 @@ class QuestionnaireController extends Controller
 {
     public function index()
     {
-        $questionnaires = Questionnaire::with('topics')->get();
+        $questionnaires = Questionnaire::with([
+            'topics',
+            'questions',
+        ])->get();
 
         return QuestionnaireResource::collection($questionnaires);
     }
@@ -21,6 +24,7 @@ class QuestionnaireController extends Controller
     {
         $questionnaire->load([
             'topics',
+            'questions',
         ]);
 
         return new QuestionnaireResource($questionnaire);
@@ -31,7 +35,7 @@ class QuestionnaireController extends Controller
         $questionnaire = Questionnaire::create($request->validated());
         $questionnaire->topics()->sync($request->topics);
 
-        return new QuestionnaireResource($questionnaire->load('topics'));
+        return new QuestionnaireResource($questionnaire);
     }
 
     public function update(UpdateQuestionnaireRequest $request, Questionnaire $questionnaire)
@@ -39,7 +43,7 @@ class QuestionnaireController extends Controller
         $questionnaire->update($request->validated());
         $questionnaire->topics()->sync($request->topics);
 
-        return new QuestionnaireResource($questionnaire->load('topics'));
+        return new QuestionnaireResource($questionnaire);
     }
 
     public function delete(DeleteQuestionnaireRequest $request, Questionnaire $questionnaire)
