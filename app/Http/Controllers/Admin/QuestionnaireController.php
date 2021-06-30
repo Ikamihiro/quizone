@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Questionnaire\{DeleteQuestionnaireRequest, StoreQuestionnaireRequest, UpdateQuestionnaireRequest};
 use App\Http\Resources\QuestionnaireResource;
 use App\Models\Questionnaire;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class QuestionnaireController extends Controller
@@ -16,6 +15,15 @@ class QuestionnaireController extends Controller
         $questionnaires = Questionnaire::with('topics')->get();
 
         return QuestionnaireResource::collection($questionnaires);
+    }
+
+    public function show(Questionnaire $questionnaire)
+    {
+        $questionnaire->load([
+            'topics',
+        ]);
+
+        return new QuestionnaireResource($questionnaire);
     }
 
     public function store(StoreQuestionnaireRequest $request)
