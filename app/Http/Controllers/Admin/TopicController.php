@@ -12,9 +12,18 @@ class TopicController extends Controller
 {
     public function index()
     {
-        $topics = Topic::all();
+        $topics = Topic::with('questionnaires')->get();
 
         return TopicResource::collection($topics);
+    }
+
+    public function show(Topic $topic)
+    {
+        $topic->load([
+            'questionnaires',
+        ]);
+
+        return new TopicResource($topic);
     }
 
     public function store(StoreTopicRequest $request)
@@ -34,7 +43,7 @@ class TopicController extends Controller
     public function delete(DeleteTopicRequest $request, Topic $topic)
     {
         Log::debug($request);
-        
+
         $topic->delete();
 
         return response()->noContent();
