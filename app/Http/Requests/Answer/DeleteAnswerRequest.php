@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Answer;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class DeleteAnswerRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class DeleteAnswerRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -23,8 +24,6 @@ class DeleteAnswerRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        return [];
     }
 }
