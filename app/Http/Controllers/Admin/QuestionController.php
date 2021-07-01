@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Question\DeleteQuestionRequest;
-use App\Http\Requests\Question\StoreQuestionRequest;
-use App\Http\Requests\Question\UpdateQuestionRequest;
+use App\Http\Requests\Question\{DeleteQuestionRequest, StoreQuestionRequest, UpdateQuestionRequest};
 use App\Models\Question;
 use App\Http\Resources\QuestionResource;
 use Illuminate\Support\Facades\Log;
