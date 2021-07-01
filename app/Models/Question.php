@@ -7,22 +7,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Questionnaire extends Model
+class Question extends Model
 {
     use HasFactory, Uuids, SoftDeletes;
 
     protected $fillable = [
-        'name',
+        'title',
         'description',
+        'correct',
     ];
 
-    public function topics()
+    public function questionnaire()
     {
-        return $this->belongsToMany(Topic::class, 'topic_questionnaire');
-    }
-
-    public function questions()
-    {
-        return $this->hasMany(Question::class);
+        return $this->belongsTo(Questionnaire::class);
     }
 }
