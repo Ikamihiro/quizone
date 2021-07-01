@@ -22,7 +22,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('login', [AuthController::class, 'login'])->name('auth.login');
 });
 
-Route::group(['middleware' => 'auth:sanctum'], function () {
+Route::group(['middleware' => 'auth:api'], function () {
     Route::get('user/current', [AuthController::class, 'getCurrentUser'])->name('getCurrentUser');
 
     Route::get('topic', [TopicController::class, 'index'])->name('topic.index');
