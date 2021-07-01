@@ -23,7 +23,9 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('user/current', [AuthController::class, 'getCurrentUser'])->name('getCurrentUser');
+    Route::post('user/current', [AuthController::class, 'getCurrentUser'])->name('getCurrentUser');
+    Route::post('user/refresh', [AuthController::class, 'refresh'])->name('refreshUser');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('topic', [TopicController::class, 'index'])->name('topic.index');
     Route::post('topic', [TopicController::class, 'store'])->name('topic.store');

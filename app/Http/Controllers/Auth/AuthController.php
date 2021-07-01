@@ -6,11 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\UserRegisterRequest;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -39,5 +35,23 @@ class AuthController extends Controller
     public function getCurrentUser()
     {
         return response()->json(auth()->user());
+    }
+
+    public function refresh()
+    {
+        $token = Auth::refresh();
+
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => Auth::factory()->getTTL() * 60,
+        ]);
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return response()->noContent();
     }
 }
