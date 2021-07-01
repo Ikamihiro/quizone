@@ -22,8 +22,10 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('login', [AuthController::class, 'login'])->name('auth.login');
 });
 
-Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::get('user/current', [AuthController::class, 'getCurrentUser'])->name('getCurrentUser');
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::post('user/current', [AuthController::class, 'getCurrentUser'])->name('getCurrentUser');
+    Route::post('user/refresh', [AuthController::class, 'refresh'])->name('refreshUser');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('topic', [TopicController::class, 'index'])->name('topic.index');
     Route::get('topic/{topic}', [TopicController::class, 'show'])->name('topic.show');
