@@ -27,7 +27,6 @@ class StoreQuestionRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
-            'correct' => ['required', 'boolean'],
             'questionnaire_id' => ['required', 'exists:questionnaires,id'],
         ];
     }

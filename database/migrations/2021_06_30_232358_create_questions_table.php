@@ -17,7 +17,6 @@ class CreateQuestionsTable extends Migration
             $table->uuid('id')->primary();
             $table->string('title');
             $table->longText('description');
-            $table->boolean('correct')->default(false);
             $table->foreignUuid('questionnaire_id')->constrained('questionnaires')->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
