@@ -14,7 +14,9 @@ class QuestionnaireController extends Controller
     {
         $questionnaires = Questionnaire::with([
             'topics',
-            'questions',
+            'questions' => function ($query) {
+                $query->inRandomOrder();
+            },
         ])->get();
 
         return QuestionnaireResource::collection($questionnaires);
@@ -24,7 +26,9 @@ class QuestionnaireController extends Controller
     {
         $questionnaire->load([
             'topics',
-            'questions',
+            'questions' => function ($query) {
+                $query->inRandomOrder();
+            },
         ]);
 
         return new QuestionnaireResource($questionnaire);

@@ -18,7 +18,7 @@ class TopicResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'questionnaires' => $this->whenLoaded('questionnaires'),
+            'questionnaires' => QuestionnaireResource::collection($this->whenLoaded('questionnaires')),
         ];
     }
 }
