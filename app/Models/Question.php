@@ -15,6 +15,7 @@ class Question extends Model
         'title',
         'description',
         'correct',
+        'questionnaire_id',
     ];
 
     public function questionnaire()

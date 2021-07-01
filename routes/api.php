@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\QuestionnaireController;
 use App\Http\Controllers\Admin\TopicController;
 use App\Http\Controllers\Auth\AuthController;
@@ -38,4 +39,10 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('questionnaire', [QuestionnaireController::class, 'store'])->name('questionnaire.store');
     Route::put('questionnaire/{questionnaire}', [QuestionnaireController::class, 'update'])->name('questionnaire.update');
     Route::delete('questionnaire/{questionnaire}', [QuestionnaireController::class, 'delete'])->name('questionnaire.delete');
+
+    Route::get('question', [QuestionController::class, 'index'])->name('question.index');
+    Route::get('question/{question}', [QuestionController::class, 'show'])->name('question.show');
+    Route::post('question', [QuestionController::class, 'store'])->name('question.store');
+    Route::put('question/{question}', [QuestionController::class, 'update'])->name('question.update');
+    Route::delete('question/{question}', [QuestionController::class, 'delete'])->name('question.delete');
 });

@@ -12,6 +12,21 @@
 
 namespace App\Models{
 /**
+ * App\Models\Question
+ *
+ * @property-read \App\Models\Questionnaire $questionnaire
+ * @method static \Illuminate\Database\Eloquent\Builder|Question newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Question newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Question onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Question query()
+ * @method static \Illuminate\Database\Query\Builder|Question withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Question withoutTrashed()
+ */
+	class Question extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Questionnaire
  *
  * @property string $id
@@ -20,6 +35,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Question[] $questions
+ * @property-read int|null $questions_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Topic[] $topics
  * @property-read int|null $topics_count
  * @method static \Illuminate\Database\Eloquent\Builder|Questionnaire newModelQuery()
