@@ -15,7 +15,8 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::with([
-            'questionnaire'
+            'questionnaire',
+            'answers',
         ])->get();
 
         return QuestionResource::collection($questions);
@@ -25,6 +26,7 @@ class QuestionController extends Controller
     {
         $question->load([
             'questionnaire',
+            'answers',
         ]);
 
         return new QuestionResource($question);
