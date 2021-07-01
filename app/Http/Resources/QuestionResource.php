@@ -18,7 +18,6 @@ class QuestionResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            'correct' => $this->correct,
             'questionnaire' => new QuestionResource($this->whenLoaded('questionnaire')),
         ];
     }

@@ -21,4 +21,9 @@ class Question extends Model
     {
         return $this->belongsTo(Questionnaire::class);
     }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
 }
