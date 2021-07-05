@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Answer;
+use App\Models\Option;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class AnswerFactory extends Factory
+class OptionFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Answer::class;
+    protected $model = Option::class;
 
     /**
      * Define the model's default state.
