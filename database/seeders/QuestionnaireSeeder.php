@@ -15,7 +15,7 @@ class QuestionnaireSeeder extends Seeder
     {
         \App\Models\Questionnaire::factory(10)
             ->has(\App\Models\Question::factory()
-                ->has(\App\Models\Answer::factory()->count(5), 'answers')
+                ->has(\App\Models\Option::factory()->count(5), 'options')
                 ->count(10), 'questions')
             ->has(\App\Models\Topic::factory()->count(3))
             ->create();

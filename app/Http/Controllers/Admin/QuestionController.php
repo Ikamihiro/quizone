@@ -14,7 +14,7 @@ class QuestionController extends Controller
     {
         $questions = Question::with([
             'questionnaire',
-            'answers',
+            'options',
         ])->get();
 
         return QuestionResource::collection($questions);
@@ -24,7 +24,7 @@ class QuestionController extends Controller
     {
         $question->load([
             'questionnaire',
-            'answers',
+            'options',
         ]);
 
         return new QuestionResource($question);

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\AnswerController;
+use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\QuestionnaireController;
 use App\Http\Controllers\Admin\TopicController;
@@ -46,9 +46,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::put('question/{question}', [QuestionController::class, 'update'])->name('question.update');
     Route::delete('question/{question}', [QuestionController::class, 'delete'])->name('question.delete');
 
-    Route::get('answer', [AnswerController::class, 'index'])->name('answer.index');
-    Route::get('answer/{answer}', [AnswerController::class, 'show'])->name('answer.show');
-    Route::post('answer', [AnswerController::class, 'store'])->name('answer.store');
-    Route::put('answer/{answer}', [AnswerController::class, 'update'])->name('answer.update');
-    Route::delete('answer/{answer}', [AnswerController::class, 'delete'])->name('answer.delete');
+    Route::get('option', [OptionController::class, 'index'])->name('option.index');
+    Route::get('option/{option}', [OptionController::class, 'show'])->name('option.show');
+    Route::post('option', [OptionController::class, 'store'])->name('option.store');
+    Route::put('option/{option}', [OptionController::class, 'update'])->name('option.update');
+    Route::delete('option/{option}', [OptionController::class, 'delete'])->name('option.delete');
 });
