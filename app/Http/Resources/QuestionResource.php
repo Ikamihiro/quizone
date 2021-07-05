@@ -19,7 +19,7 @@ class QuestionResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'questionnaire' => new QuestionResource($this->whenLoaded('questionnaire')),
-            'answers' => AnswerResource::collection($this->whenLoaded('answers'))
+            'options' => OptionResource::collection($this->whenLoaded('options'))
         ];
     }
 }
