@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\QuestionnaireController;
 use App\Http\Controllers\Admin\TopicController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Evaluation\EvaluationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,4 +33,10 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::apiResource('questionnaire', QuestionnaireController::class);
     Route::apiResource('question', QuestionController::class);
     Route::apiResource('option', OptionController::class);
+
+    Route::group(['prefix' => 'evaluation'], function () {
+        Route::get('/', [EvaluationController::class, 'index'])->name('evaluation.index');
+        Route::get('/{evaluation}', [EvaluationController::class, 'show'])->name('evaluation.show');
+        Route::post('/', [EvaluationController::class, 'store'])->name('evaluation.store');
+    });
 });

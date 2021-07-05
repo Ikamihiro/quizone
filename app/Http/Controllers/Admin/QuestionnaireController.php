@@ -15,7 +15,7 @@ class QuestionnaireController extends Controller
         $questionnaires = Questionnaire::with([
             'topics',
             'questions' => function ($query) {
-                $query->inRandomOrder();
+                $query->with('options')->inRandomOrder();
             },
         ])->paginate();
 
@@ -27,7 +27,7 @@ class QuestionnaireController extends Controller
         $questionnaire->load([
             'topics',
             'questions' => function ($query) {
-                $query->inRandomOrder();
+                $query->with('options')->inRandomOrder();
             },
         ]);
 
