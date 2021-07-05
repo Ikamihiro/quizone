@@ -12,7 +12,7 @@ class TopicController extends Controller
 {
     public function index()
     {
-        $topics = Topic::with('questionnaires')->get();
+        $topics = Topic::with('questionnaires')->paginate();
 
         return TopicResource::collection($topics);
     }

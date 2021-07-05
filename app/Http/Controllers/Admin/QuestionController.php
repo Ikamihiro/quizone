@@ -15,7 +15,7 @@ class QuestionController extends Controller
         $questions = Question::with([
             'questionnaire',
             'options',
-        ])->get();
+        ])->paginate();
 
         return QuestionResource::collection($questions);
     }

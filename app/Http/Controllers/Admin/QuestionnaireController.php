@@ -17,7 +17,7 @@ class QuestionnaireController extends Controller
             'questions' => function ($query) {
                 $query->inRandomOrder();
             },
-        ])->get();
+        ])->paginate();
 
         return QuestionnaireResource::collection($questionnaires);
     }

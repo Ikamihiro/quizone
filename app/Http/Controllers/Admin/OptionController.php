@@ -14,7 +14,7 @@ class OptionController extends Controller
     {
         $option = Option::with([
             'question',
-        ])->get();
+        ])->paginate();
 
         return OptionResource::collection($option);
     }
