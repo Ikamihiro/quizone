@@ -44,7 +44,7 @@ class QuestionController extends Controller
         return new QuestionResource($question);
     }
 
-    public function delete(DeleteQuestionRequest $request, Question $question)
+    public function destroy(DeleteQuestionRequest $request, Question $question)
     {
         Log::debug($request);
 

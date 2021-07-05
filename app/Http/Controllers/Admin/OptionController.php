@@ -42,7 +42,7 @@ class OptionController extends Controller
         return new OptionResource($option);
     }
 
-    public function delete(DeleteOptionRequest $request, Option $option)
+    public function destroy(DeleteOptionRequest $request, Option $option)
     {
         Log::debug($request);
 

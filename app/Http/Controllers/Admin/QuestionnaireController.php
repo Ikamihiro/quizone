@@ -50,7 +50,7 @@ class QuestionnaireController extends Controller
         return new QuestionnaireResource($questionnaire);
     }
 
-    public function delete(DeleteQuestionnaireRequest $request, Questionnaire $questionnaire)
+    public function destroy(DeleteQuestionnaireRequest $request, Questionnaire $questionnaire)
     {
         Log::debug($request);
 

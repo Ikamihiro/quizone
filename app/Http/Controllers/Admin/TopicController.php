@@ -40,7 +40,7 @@ class TopicController extends Controller
         return new TopicResource($topic);
     }
 
-    public function delete(DeleteTopicRequest $request, Topic $topic)
+    public function destroy(DeleteTopicRequest $request, Topic $topic)
     {
         Log::debug($request);
 
