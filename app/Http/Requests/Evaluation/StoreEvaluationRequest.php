@@ -26,6 +26,8 @@ class StoreEvaluationRequest extends FormRequest
     {
         return [
             'questionnaire_id' => ['required', 'exists:questionnaires,id'],
+            'answers.*.question_id' => ['required', 'exists:questions,id'],
+            'answers.*.option_id' => ['required', 'exists:options,id'],
         ];
     }
 }

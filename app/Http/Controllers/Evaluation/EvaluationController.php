@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Evaluation\StoreEvaluationRequest;
 use App\Http\Resources\EvaluationResource;
 use App\Models\Evaluation;
-use DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class EvaluationController extends Controller
 {
@@ -33,9 +33,21 @@ class EvaluationController extends Controller
 
     public function store(StoreEvaluationRequest $request)
     {
-        $evaluation = Auth::user()->evaluations()->create([
-            'questionnaire_id' => $request->questionnaire_id,
-        ]);
+        DB::beginTransaction();
+
+        try {
+            $evaluation = Auth::user()->evaluations()->create([
+                'questionnaire_id' => $request->questionnaire_id,
+            ]);
+
+            dd($request->answers);
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            throw $th;
+        }
 
         return new EvaluationResource($evaluation);
     }
