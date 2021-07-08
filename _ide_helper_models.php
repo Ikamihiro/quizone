@@ -12,6 +12,39 @@
 
 namespace App\Models{
 /**
+ * App\Models\Answer
+ *
+ * @property string $id
+ * @property string $evaluation_id
+ * @property string $question_id
+ * @property string $option_id
+ * @property int $correct
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Evaluation $evaluation
+ * @property-read \App\Models\Option $option
+ * @property-read \App\Models\Question $question
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Answer onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer whereCorrect($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer whereEvaluationId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer whereOptionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer whereQuestionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Answer withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Answer withoutTrashed()
+ */
+	class Answer extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Evaluation
  *
  * @property string $id
@@ -21,6 +54,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Answer[] $answers
+ * @property-read int|null $answers_count
  * @property-read \App\Models\Questionnaire $questionnaire
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Evaluation newModelQuery()

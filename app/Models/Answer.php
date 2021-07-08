@@ -18,6 +18,11 @@ class Answer extends Model
         'correct',
     ];
 
+    protected $with = [
+        'question',
+        'option',
+    ];
+
     public function evaluation()
     {
         return $this->belongsTo(Evaluation::class);
