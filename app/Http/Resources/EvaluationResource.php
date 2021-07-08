@@ -17,6 +17,7 @@ class EvaluationResource extends JsonResource
         return [
             'user' => new UserResource($this->whenLoaded('user')),
             'questionnaire' => new QuestionnaireResource($this->whenLoaded('questionnaire')),
+            'answers' => AnswerResource::collection($this->whenLoaded('answers')),
             'finished_at' => $this->finished_at,
         ];
     }
