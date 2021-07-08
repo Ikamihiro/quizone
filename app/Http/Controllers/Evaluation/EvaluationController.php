@@ -16,6 +16,7 @@ class EvaluationController extends Controller
         $evaluations = Evaluation::with([
             'user',
             'questionnaire',
+            'answers',
         ])->get();
 
         return EvaluationResource::collection($evaluations);
@@ -26,6 +27,7 @@ class EvaluationController extends Controller
         $evaluation->load([
             'user',
             'questionnaire',
+            'answers',
         ]);
 
         return new EvaluationResource($evaluation);
@@ -40,7 +42,9 @@ class EvaluationController extends Controller
                 'questionnaire_id' => $request->questionnaire_id,
             ]);
 
-            dd($request->answers);
+            foreach ($request->answers as $answer) {
+                $evaluation->answers()->create($answer);
+            }
 
             DB::commit();
         } catch (\Throwable $th) {
