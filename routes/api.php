@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\QuestionnaireController;
 use App\Http\Controllers\Admin\TopicController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Evaluation\EvaluationController;
+use App\Http\Controllers\Evaluation\QuestionnaireController as EvaluationQuestionnaireController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,14 +30,19 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('user/refresh', [AuthController::class, 'refresh'])->name('refreshUser');
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::apiResource('topic', TopicController::class);
-    Route::apiResource('questionnaire', QuestionnaireController::class);
-    Route::apiResource('question', QuestionController::class);
-    Route::apiResource('option', OptionController::class);
+    Route::group(['prefix' => 'admin'], function () {
+        Route::apiResource('topic', TopicController::class);
+        Route::apiResource('questionnaire', QuestionnaireController::class);
+        Route::apiResource('question', QuestionController::class);
+        Route::apiResource('option', OptionController::class);
+    });
 
-    Route::group(['prefix' => 'evaluation'], function () {
-        Route::get('/', [EvaluationController::class, 'index'])->name('evaluation.index');
-        Route::get('/{evaluation}', [EvaluationController::class, 'show'])->name('evaluation.show');
-        Route::post('/', [EvaluationController::class, 'store'])->name('evaluation.store');
+    Route::group(['prefix' => 'common'], function () {
+        Route::get('questionnaire', [EvaluationQuestionnaireController::class, 'index'])->name('questionnaire.list');
+        Route::get('questionnaire/{questionnaire}', [EvaluationQuestionnaireController::class, 'show'])->name('questionnaire.details');
+
+        Route::get('evaluation', [EvaluationController::class, 'index'])->name('evaluation.index');
+        Route::get('evaluation/{evaluation}', [EvaluationController::class, 'show'])->name('evaluation.show');
+        Route::post('evaluation', [EvaluationController::class, 'store'])->name('evaluation.store');
     });
 });

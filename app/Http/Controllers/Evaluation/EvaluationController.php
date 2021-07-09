@@ -14,10 +14,9 @@ class EvaluationController extends Controller
     public function index()
     {
         $evaluations = Evaluation::with([
-            'user',
             'questionnaire',
             'answers',
-        ])->get();
+        ])->where('user_id', Auth::user()->id)->paginate();
 
         return EvaluationResource::collection($evaluations);
     }
