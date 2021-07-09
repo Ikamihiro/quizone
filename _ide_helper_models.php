@@ -12,13 +12,125 @@
 
 namespace App\Models{
 /**
+ * App\Models\Answer
+ *
+ * @property string $id
+ * @property string $evaluation_id
+ * @property string $question_id
+ * @property string $option_id
+ * @property int $correct
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Evaluation $evaluation
+ * @property-read \App\Models\Option $option
+ * @property-read \App\Models\Question $question
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Answer onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer whereCorrect($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer whereEvaluationId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer whereOptionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer whereQuestionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Answer whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Answer withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Answer withoutTrashed()
+ */
+	class Answer extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Evaluation
+ *
+ * @property string $id
+ * @property string $user_id
+ * @property string $questionnaire_id
+ * @property \Illuminate\Support\Carbon|null $finished_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Answer[] $answers
+ * @property-read int|null $answers_count
+ * @property-read \App\Models\Questionnaire $questionnaire
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluation newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Evaluation onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereFinishedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereQuestionnaireId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|Evaluation withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Evaluation withoutTrashed()
+ */
+	class Evaluation extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Option
+ *
+ * @property string $id
+ * @property string $description
+ * @property int $correct
+ * @property string $question_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Question $question
+ * @method static \Database\Factories\OptionFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Option newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Option onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Option query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereCorrect($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereQuestionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Option withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Option withoutTrashed()
+ */
+	class Option extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Question
  *
+ * @property string $id
+ * @property string $title
+ * @property string $description
+ * @property string $questionnaire_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Option[] $options
+ * @property-read int|null $options_count
  * @property-read \App\Models\Questionnaire $questionnaire
+ * @method static \Database\Factories\QuestionFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Question newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Question newQuery()
  * @method static \Illuminate\Database\Query\Builder|Question onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Question query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Question whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Question whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Question whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Question whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Question whereQuestionnaireId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Question whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Question whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|Question withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Question withoutTrashed()
  */
@@ -39,6 +151,7 @@ namespace App\Models{
  * @property-read int|null $questions_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Topic[] $topics
  * @property-read int|null $topics_count
+ * @method static \Database\Factories\QuestionnaireFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Questionnaire newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Questionnaire newQuery()
  * @method static \Illuminate\Database\Query\Builder|Questionnaire onlyTrashed()
@@ -67,6 +180,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Questionnaire[] $questionnaires
  * @property-read int|null $questionnaires_count
+ * @method static \Database\Factories\TopicFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Topic newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Topic newQuery()
  * @method static \Illuminate\Database\Query\Builder|Topic onlyTrashed()
@@ -96,6 +210,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Evaluation[] $evaluations
+ * @property-read int|null $evaluations_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @method static \Database\Factories\UserFactory factory(...$parameters)

@@ -13,11 +13,12 @@ class CreateAnswersTable extends Migration
      */
     public function up()
     {
-        Schema::create('options', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('description');
-            $table->boolean('correct');
+            $table->foreignUuid('evaluation_id')->constrained('evaluations')->cascadeOnDelete();
             $table->foreignUuid('question_id')->constrained('questions')->cascadeOnDelete();
+            $table->foreignUuid('option_id')->nullable()->constrained('options')->cascadeOnDelete();
+            $table->boolean('correct')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

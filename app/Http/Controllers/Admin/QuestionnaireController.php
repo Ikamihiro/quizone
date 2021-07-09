@@ -15,9 +15,9 @@ class QuestionnaireController extends Controller
         $questionnaires = Questionnaire::with([
             'topics',
             'questions' => function ($query) {
-                $query->inRandomOrder();
+                $query->with('options')->inRandomOrder();
             },
-        ])->get();
+        ])->paginate();
 
         return QuestionnaireResource::collection($questionnaires);
     }
@@ -27,7 +27,7 @@ class QuestionnaireController extends Controller
         $questionnaire->load([
             'topics',
             'questions' => function ($query) {
-                $query->inRandomOrder();
+                $query->with('options')->inRandomOrder();
             },
         ]);
 
@@ -50,7 +50,7 @@ class QuestionnaireController extends Controller
         return new QuestionnaireResource($questionnaire);
     }
 
-    public function delete(DeleteQuestionnaireRequest $request, Questionnaire $questionnaire)
+    public function destroy(DeleteQuestionnaireRequest $request, Questionnaire $questionnaire)
     {
         Log::debug($request);
 
