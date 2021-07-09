@@ -17,8 +17,9 @@ class ValidateAnswer
      */
     public function handle(CreatingAnswerEvent $event)
     {
-        $option = Option::findOrFail($event->getAnswer()->option_id);
+        $option = Option::find($event->getAnswer()->option_id);
 
-        $event->getAnswer()->correct = $option->correct;
+        if ($option)
+            $event->getAnswer()->correct = $option->correct;
     }
 }

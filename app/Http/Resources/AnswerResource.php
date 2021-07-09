@@ -18,6 +18,7 @@ class AnswerResource extends JsonResource
             'evaluation' => new EvaluationResource($this->whenLoaded('evaluation')),
             'question' => new QuestionResource($this->whenLoaded('question')),
             'option' => new OptionResource($this->whenLoaded('option')),
+            'answered' => $this->option_id ? true : false,
         ];
     }
 }

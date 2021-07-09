@@ -17,8 +17,8 @@ class CreateAnswersTable extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('evaluation_id')->constrained('evaluations')->cascadeOnDelete();
             $table->foreignUuid('question_id')->constrained('questions')->cascadeOnDelete();
-            $table->foreignUuid('option_id')->constrained('options')->cascadeOnDelete();
-            $table->boolean('correct');
+            $table->foreignUuid('option_id')->nullable()->constrained('options')->cascadeOnDelete();
+            $table->boolean('correct')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
