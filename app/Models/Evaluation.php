@@ -20,11 +20,6 @@ class Evaluation extends Model
         'finished_at' => 'datetime',
     ];
 
-    protected $with = [
-        'questionnaire',
-        'answers',
-    ];
-
     public function user()
     {
         return $this->belongsTo(User::class);

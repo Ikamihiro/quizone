@@ -53,6 +53,12 @@ class EvaluationController extends Controller
             throw $th;
         }
 
+        $evaluation->load([
+            'questionnaire',
+            'answers',
+            'user',
+        ]);
+
         return new EvaluationResource($evaluation);
     }
 }
