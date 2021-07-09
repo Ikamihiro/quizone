@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\CreatingAnswerEvent;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,6 +22,10 @@ class Answer extends Model
     protected $with = [
         'question',
         'option',
+    ];
+
+    protected $dispatchesEvents = [
+        'creating' => CreatingAnswerEvent::class,
     ];
 
     public function evaluation()
