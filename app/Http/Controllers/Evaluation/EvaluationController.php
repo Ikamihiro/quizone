@@ -14,10 +14,8 @@ class EvaluationController extends Controller
     public function index()
     {
         $evaluations = Evaluation::with([
-            'user',
             'questionnaire',
-            'answers',
-        ])->get();
+        ])->where('user_id', Auth::user()->id)->paginate();
 
         return EvaluationResource::collection($evaluations);
     }
@@ -35,9 +33,9 @@ class EvaluationController extends Controller
 
     public function store(StoreEvaluationRequest $request)
     {
-        DB::beginTransaction();
-
         try {
+            DB::beginTransaction();
+
             $evaluation = Auth::user()->evaluations()->create([
                 'questionnaire_id' => $request->questionnaire_id,
             ]);
